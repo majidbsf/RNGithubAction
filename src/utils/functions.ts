@@ -1,3 +1,3 @@
-export const addNumbers = (): number => {
-  return 0
+export const Add_Number_To100 = (input: number): number => {
+  return 100 + input
 }

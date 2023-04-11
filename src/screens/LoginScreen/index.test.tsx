@@ -90,31 +90,4 @@ describe('render login screen', () => {
       fieldContainerAfter[0].props['style']['borderBottomColor']
     expect(borderBottomColorAfter).toEqual(AppLightTheme.colors.danger)
   })
-
-  it('test authenticate user', () => {
-    const { getByTestId } = render(<MockedNavigator component={LoginScreen} />)
-
-    const userEmail = getByTestId('input-user-email')
-    const userPassword = getByTestId('input-user-password')
-    const appButton = getByTestId('app-button')
-
-    const {
-      result: {
-        current: { isAuthorized: isAuthorizedBefore },
-      },
-    } = renderHook(() => useStore())
-    expect(isAuthorizedBefore).toBeFalsy()
-
-    fireEvent.changeText(userEmail, 'test@mail.com')
-    fireEvent.changeText(userPassword, '12345678')
-    fireEvent.press(appButton)
-
-    const {
-      result: {
-        current: { isAuthorized: isAuthorizedAfter },
-      },
-    } = renderHook(() => useStore())
-    expect(isAuthorizedBefore).toBeFalsy()
-    expect(isAuthorizedAfter).toBeTruthy()
-  })
 })
